@@ -1,0 +1,48 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressroutebar
+spec:
+  entryPoints:
+    - web
+  routes:
+#  - match: PathPrefix(`/bear`)
+#     kind: Rule
+#     services:
+#  - name: bear
+#    port: 80
+#  middlewares:
+#  - name: bear-traefik-mware
+#    namespace: default
+#  - name: bear-traefik-mware-rate
+#    namespace: default
+   - match: PathPrefix(`/bear`)
+     kind: Rule
+     services:
+      - name: bear
+        port: 80
+        namespace: default
+#     middlewares:
+#      - name: bear-traefik-mware
+#        namespace: default
+#     middlewares:
+#      - name: test-replacepath
+        namespace: default
+   - match: PathPrefix(`/moose`)
+     kind: Rule
+     services:
+      - name: moose
+        port: 80
+     middlewares:
+      - name: moose-traefik-mware
+        namespace: default
+   - match: PathPrefix(`/hare`)
+     kind: Rule
+     services:
+      - name: hare
+        port: 80
+     middlewares:
+      - name: hare-traefik-mware
+        namespace: default
+      - name: test-redirectscheme
+        namespace: default

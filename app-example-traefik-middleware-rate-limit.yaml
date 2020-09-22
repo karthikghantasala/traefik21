@@ -1,0 +1,10 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: bear-traefik-mware-rate
+  namespace: default
+
+spec:
+  rateLimit:
+    period: 1m
+    average: 1
